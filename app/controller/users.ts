@@ -19,6 +19,7 @@ export class UsersController extends UsersService {
 
     try {
       const result = await this.createUser({
+        email: params.email,
         firstName: params.firstName,
         lastName: params.lastName,
         password: params.password
@@ -72,16 +73,12 @@ export class UsersController extends UsersService {
   async findOne (event: any, context: Context) {
     // The amount of memory allocated for the function
     console.log('memoryLimitInMB: ', context.memoryLimitInMB);
-
     const id: number = Number(event.pathParameters.id);
-
     try {
       const result = await this.findOneUserById(id);
-
       return MessageUtil.success(result);
     } catch (err) {
       console.error(err);
-
       return MessageUtil.error(err.code, err.message);
     }
   }

@@ -1,19 +1,22 @@
 import mongoose from 'mongoose';
 
 export type UsersDocument = mongoose.Document & {
+  email: string,
   firstName: string,
   lastName: string,
   password: string,
-  description: string,
   createdAt: Date,
 };
 
 const usersSchema = new mongoose.Schema({
+  email: String,
   firstName: String,
   lastName: String,
   password: String,
-  description: String,
   createdAt: { type: Date, default: Date.now },
+  filters : [
+    {type: mongoose.Schema.Types.ObjectId,ref:'Filters'}
+  ]
 });
 
 // Note: OverwriteModelError: Cannot overwrite `Users` model once compiled. error

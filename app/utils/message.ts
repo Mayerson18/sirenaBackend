@@ -34,8 +34,7 @@ class Result {
 
 export class MessageUtil {
   static success(data: object): ResponseVO {
-    const result = new Result(StatusCode.success, 0, 'success', data);
-
+    const result = new Result(StatusCode.success, 200, 'success', data);
     return result.bodyToString();
   }
 

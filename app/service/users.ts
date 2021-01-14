@@ -14,6 +14,7 @@ export class UsersService {
   protected async createUser (params: CreateUserDTO): Promise<object> {
     try {
       const result = await this.users.create({
+        email: params.email,
         firstName: params.firstName,
         lastName: params.lastName,
         password: params.password
@@ -52,6 +53,14 @@ export class UsersService {
    */
   protected findOneUserById (id: number) {
     return this.users.findOne({ id });
+  }
+
+  /**
+   * Query user by email
+   * @param email
+   */
+  protected findOneUserByEmail (email: string) {
+    return this.users.findOne({ email });
   }
 
   /**
